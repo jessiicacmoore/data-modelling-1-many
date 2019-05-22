@@ -1,0 +1,187 @@
+Find the author with the name 'Kara Melton' and then select all the articles she has written.
+
+    SELECT id, name FROM authors WHERE name='Kara Melton';
+    id |    name     
+    ----+-------------
+    8 | Kara Melton
+
+    SELECT id, title FROM articles WHERE author_id=8
+    id |                                              title                                               
+    ----+--------------------------------------------------------------------------------------------------
+    9 | How Tech Business Models Come From Marginalized Communities, But Startups Are Still Mostly White
+    10 | Confronting the Assumption of Whiteness in Virtual Spaces
+    (2 rows)
+
+
+
+Find Ontario in the provinces table and then find all the cities in that province.
+    
+    SELECT id, name FROM provinces
+    one_to_many_assignment-# ;
+    id |           name            
+    ----+---------------------------
+    14 | Ontario
+    15 | Quebec
+    16 | New Brunswick
+    17 | New Brunswick
+    18 | Nova Scotia
+    19 | Manitoba
+    20 | Northwest Territories
+    21 | British Columbia
+    22 | Prince Edward Island
+    23 | Yukon Territory
+    24 | Alberta
+    25 | Saskatchewan
+    26 | Newfoundland and Labrador
+    27 | Nunavut
+    (14 rows)
+
+    SELECT name FROM cities WHERE province_id=14
+    one_to_many_assignment-# ;
+    name   
+    ---------
+    Toronto
+    Ottawa
+    (2 rows)
+
+
+
+Who wrote the article called 'Coding Bootcamps and Emotional Labor'?
+
+    SELECT author_id FROM articles WHERE title='Coding Bootcamps and Emotional Labor';
+    author_id 
+    -----------
+            4
+    (1 row)
+
+    SELECT name FROM authors WHERE id=4;
+        name        
+    -------------------
+    Tilde Ann Thurium
+    (1 row)
+
+
+
+Write a series of SQL queries to find out how many provinces are in Canada.
+
+    SELECT id FROM countries WHERE name='Canada';
+    id 
+    ----
+    1
+    (1 row)
+
+    SELECT COUNT(id) FROM provinces where country_id=1;
+    count 
+    -------
+        14
+    (1 row)
+
+
+
+How many people live at 4740 McDermott Street?
+
+    SELECT id FROM residences WHERE address='4740 McDermott Street';
+    id 
+    ----
+    9
+
+    SELECT COUNT(id) FROM persons WHERE residence_id=9;
+    count 
+    -------
+        2
+    (1 row)
+
+
+
+What city is 4740 McDermott Street in?
+
+    SELECT city_id FROM residences WHERE address='4740 McDermott Street';
+    city_id 
+    ---------
+        11
+    (1 row)
+
+    SELECT name FROM cities WHERE id=11;
+    name  
+    --------
+    Ottawa
+    (1 row)
+
+
+
+What province is 4740 McDermott Street in?
+
+    SELECT province_id FROM cities WHERE id=11;
+    province_id 
+    -------------
+            14
+
+    SELECT name FROM provinces WHERE id=14;
+    name   
+    ---------
+    Ontario
+    (1 row)
+
+
+
+What country is 4740 McDermott Street in?
+
+    SELECT country_id FROM provinces WHERE id=14;
+    country_id 
+    ------------
+            1
+
+    SELECT name FROM countries WHERE id=1;
+    name  
+    --------
+    Canada
+    (1 row)
+
+
+
+Find the person named 'Destini Davis' and then use a series of SQL queries to find what country they live in.
+
+    SELECT residence_id FROM persons WHERE name='Destini Davis';
+    residence_id 
+    --------------
+                2
+    (1 row)
+
+    SELECT city_id FROM residences WHERE id=2;
+    city_id 
+    ---------
+        8
+    (1 row)
+
+    SELECT province_id FROM cities WHERE id=8;
+    province_id 
+    -------------
+            14
+    (1 row)
+
+    SELECT country_id FROM provinces WHERE id=14;
+    country_id 
+    ------------
+            1
+    (1 row)
+
+    select name FROM countries WHERE id=1;
+    name  
+    --------
+    Canada
+    (1 row)
+
+
+How many articles has Aditya Mukerjee written?
+
+    SELECT id FROM authors WHERE name='Aditya Mukerjee';
+    id 
+    ----
+    2
+    (1 row)
+
+    SELECT COUNT(id) FROM articles WHERE author_id=2;
+    count 
+    -------
+        1
+    (1 row)
